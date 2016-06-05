@@ -1,6 +1,6 @@
 name = "Foundation Clean Theme"
 license = "MIT"
-description = ""
+description = "Clean and strong theme for Hugo"
 homepage = "http://kirkfawkes.github.io/"
 tags = []
 features = ["", ""]
