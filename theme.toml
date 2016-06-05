@@ -1,0 +1,11 @@
+name = "Foundation Clean Theme"
+license = "MIT"
+description = ""
+homepage = "http://kirkfawkes.github.io/"
+tags = []
+features = ["", ""]
+min_version = 0.13
+
+[author]
+  name = "Igor Zubko"
+  homepage = "http://kirkfawkes.github.io/"

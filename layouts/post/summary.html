@@ -1,0 +1,43 @@
+{{ $tagsMap := .Site.Params.tags }}
+{{ $baseurl := trim (add .Site.BaseURL "") "/"}}
+
+{{ partial "layout_container_begin.html" . }}
+	<div class="right tags-list">
+		{{ range .Params.tags }}
+			<a title="{{ . }}" href="{{ $baseurl }}/tags/{{ . }}">
+				<span class="label tag tag-{{ . }}">
+					<i class="step {{ index $tagsMap . }}"></i>
+				</span>
+			</a>
+		{{ end }}
+	</div>
+
+	<h3 class="title">
+		<a href="{{ .RelPermalink }}">{{ .Title }}</a>
+	</h3>
+
+	<div class="row">
+		{{ if and (isset .Params "preview") (gt (len .Params.preview) 0) }}
+			<div class="small-12 medium-7 columns">
+				<hr />
+				{{ .Summary }}
+			</div>
+			<div class="small-offset-3 small-6 medium-offset-0 medium-5 columns" style="min-height:9rem;">
+				<a href="{{ .RelPermalink }}">
+					{{ if eq (substr .Params.preview 0 1) "/" }}
+						<img class="preview" src="{{ add $baseurl .Params.preview }}" />
+					{{ else }}
+						<img class="preview" src="{{ .Params.preview }}" />
+					{{ end }}
+				</a>
+			</div>
+		{{ else }}
+			<div class="small-12 columns">
+				<hr />
+				{{ .Summary }}
+			</div>
+		{{ end }}
+
+		<div class="summary-bottom-border"></div>
+	</div>
+{{ partial "layout_container_end.html" . }}

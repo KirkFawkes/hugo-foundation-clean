@@ -1,0 +1,58 @@
+{{ $tagsMap := .Site.Params.tags }}
+{{ $baseurl := trim (add .Site.BaseURL "") "/"}}
+
+{{ partial "layout_begin.html" . }}
+	<div class="content">
+		{{ partial "layout_container_begin.html" . }}
+			<div class="right tags-list">
+				{{ range .Params.tags }}
+					<a href="{{ $baseurl }}/tags/{{ . }}">
+						<span class="label tag tag-{{ . }}">
+							<i class="step {{ index $tagsMap . }}"></i>
+						</span>
+					</a>
+				{{ end }}
+			</div>
+
+			<h3 class="title">
+				<a href="{{ .RelPermalink }}">{{ .Title }}</a>
+			</h3>
+			<div class="row">
+				<div class="small-12 columns">
+					<hr />
+					<div class="post-detailed-content">
+						{{ .Content }}
+					</div>
+				</div>
+
+				<div class="summary-bottom-border"></div>
+			</div>
+
+			<!-- screenshots  -->
+			{{ if isset .Params "screenshots"}}
+				{{ range $index, $images := .Params.screenshots }}
+					{{ partial "divider.html" $index }}
+
+					<ul class="clearing-thumbs small-block-grid-4 medium-block-grid-5 large-block-grid-6" data-clearing>
+						{{ range $images }}
+							<li>
+								{{ if eq (substr . 0 1) "/" }}
+									{{ $imageLink := add $baseurl .}}
+									<a class="th" href="{{ $imageLink }}">
+										<img class="screenshot" src="{{ $imageLink }}" />
+									</a>
+								{{ else }}
+									{{ $imageLink := .}}
+									<a class="th" href="{{ $imageLink }}">
+										<img class="screenshot" src="{{ $imageLink }}" />
+									</a>
+								{{ end }}
+							</li>
+						{{ end }}
+					</ul>
+				{{ end }}
+			{{ end }}
+
+		{{ partial "layout_container_end.html" . }}
+	</div>
+{{ partial "layout_end.html" . }}

@@ -1,0 +1,16 @@
+{{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
+
+{{ partial "layout_begin.html" . }}
+	<div class="content">
+		{{ range $paginator.Pages }}
+			{{ .Render "summary"}}
+		{{ end }}
+
+		<div class="row">
+			<div class="small-12 large-10 large-centered columns">
+				{{ partial "pagination.html" . }}
+			</div>
+		</div>
+	</div>
+
+{{ partial "layout_end.html" . }}
